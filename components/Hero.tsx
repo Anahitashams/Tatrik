@@ -1,153 +1,97 @@
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import ProductVisual from "./ProductVisual";
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="
-        relative
-        min-h-[680px]
-        overflow-hidden
-        bg-[#f5f1ea]
-        lg:min-h-[760px]
-      "
-    >
-      {/* تصویر Hero */}
-
-      <div className="absolute inset-0">
+    <section id="home" className="relative min-h-[720px] overflow-hidden">
+      {/* ================= BACKGROUND ================= */}
+      <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/hero.jpg"
-          alt="محصولات تاتریک"
+          src="/images/background.png"
+          alt=""
           fill
           priority
           sizes="100vw"
-          className="
-            object-cover
-            object-center
-            lg:object-[center]
-          "
+          className="object-cover object-center"
         />
+
+        {/* <div className="absolute inset-0 bg-[#F2ECE1]/70" /> */}
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(167,183,195,0.28),transparent_35%),radial-gradient(circle_at_10%_80%,rgba(189,126,86,0.14),transparent_32%),radial-gradient(circle_at_55%_100%,rgba(150,161,132,0.12),transparent_35%)]" />
+
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F2ECE1] to-transparent" />
       </div>
 
-      {/* لایه روی تصویر */}
+      {/* ================= CONTENT ================= */}
+      <div className="mx-auto flex pt-36 min-h-[720px] max-w-6xl items-center px-6 py-28 md:px-10">
+        <div className="grid w-full items-center gap-12 md:grid-cols-2 md:gap-16">
+          {/* ================= TEXT ================= */}
+          <div className="animate-rise md:-mt-8">
+            <div className="flex items-center gap-4">
+              <p className="text-sm font-medium text-[#BD7E56]">
+                کارگاه سفالگری خاک
+              </p>
 
-      <div className="hero-overlay absolute inset-0" />
+              <span className="h-px w-14 bg-[#BD7E56]/50" />
+            </div>
 
-      {/* محتوا */}
+            <h1 className="mt-5 max-w-xl font-display text-4xl font-bold leading-[1.45] text-[#52606A] md:text-5xl">
+              ظرف‌هایی که با دست شکل گرفته‌اند،
+              <br />
+              برای میزی که هر روز دورش می‌نشینید
+            </h1>
 
-      <div
-        className="
-          container-main
-          relative
-          z-10
-          flex
-          min-h-[680px]
-          items-center
-          lg:min-h-[760px]
-        "
-      >
-        <div
-          className="
-            max-w-[470px]
-            pt-16
-            text-right
-          "
-        >
-          {/* عنوان کوچک */}
+            <p className="mt-7 max-w-lg text-base leading-8 text-[#52606A]/80 md:text-[17px]">
+              هر تکه در خاک، روی چرخ سفالگری و با لعاب‌های گیاهی ساخته می‌شود.
+              رنگ‌ها از آسمان صبح و خاک نمناک الهام گرفته‌اند؛ بی‌قاعده، گرم و
+              ماندگار.
+            </p>
 
-          <p
-            className="
-              mb-5
-              text-[10px]
-              font-medium
-              tracking-[0.08em]
-              text-[#c28784]
-            "
-          >
-            دست‌ساز با عشق
-          </p>
+            <div className="mt-9 flex flex-wrap items-center gap-7">
+              <a
+                href="#products"
+                className="rounded-full bg-[#52606A] px-8 py-3.5 text-sm text-[#F2ECE1] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#BD7E56]"
+              >
+                مشاهده محصولات
+              </a>
 
-          {/* عنوان اصلی */}
+              <a
+                href="#story"
+                className="rounded-full border border-[#52606A]/40 bg-[#F2ECE1]/20 px-8 py-3.5 text-sm text-[#52606A] backdrop-blur-[2px] transition-all duration-300 hover:-translate-y-1 hover:border-[#BD7E56] hover:text-[#BD7E56]"
+              >
+                داستان کارگاه
+              </a>
+            </div>
+          </div>
 
-          <h1
-            className="
-              text-[48px]
-              font-light
-              leading-[1.25]
-              tracking-[-0.03em]
-              text-[#526b79]
-              sm:text-[58px]
-              lg:text-[66px]
-            "
-          >
-            جایی که خاک
-            <br />
-            به هنر تبدیل می‌شود.
-          </h1>
+          {/* ================= PRODUCT CARDS ================= */}
+          <div className="grid grid-cols-2 gap-4 md:-mt-8 md:gap-5">
+            {/* Large card */}
+            <ProductVisual
+              icon="mug"
+              tone="dust"
+              className="col-span-2 aspect-[16/9] rounded-[14px]"
+            />
 
-          {/* توضیحات */}
+            {/* Bottom left */}
+            <ProductVisual
+              icon="vase"
+              tone="clay"
+              className="aspect-square rounded-[14px]"
+            />
 
-          <p
-            className="
-              mt-6
-              max-w-[390px]
-              text-[13px]
-              font-light
-              leading-7
-              text-[#68757b]
-            "
-          >
-            هر قطعه با دست و با دقت ساخته می‌شود؛ برای لحظه‌های ساده و زیبای
-            زندگی روزمره.
-          </p>
-
-          {/* دکمه */}
-
-          <div className="mt-8">
-            <a href="#shop" className="tatrik-button">
-              مشاهده مجموعه
-              <ArrowLeft size={15} strokeWidth={1.4} />
-            </a>
+            {/* Bottom right */}
+            <ProductVisual
+              icon="bowl"
+              tone="sand"
+              className="aspect-square rounded-[14px]"
+            />
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-
-      <div
-        className="
-          absolute
-          bottom-8
-          left-1/2
-          hidden
-          -translate-x-1/2
-          flex-col
-          items-center
-          gap-2
-          md:flex
-        "
-      >
-        <span
-          className="
-            text-[8px]
-            font-medium
-            uppercase
-            tracking-[0.18em]
-            text-[#788286]
-          "
-        >
-          اسکرول کنید
-        </span>
-
-        <span
-          className="
-            h-8
-            w-px
-            bg-[#9ba3a5]
-          "
-        />
-      </div>
+      {/* خیلی ظریف برای اتصال Hero به بخش بعدی */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F2ECE1]/30 to-transparent" />
     </section>
   );
 }

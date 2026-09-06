@@ -1,204 +1,159 @@
 "use client";
 
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
-
 import { useState } from "react";
+import { Menu, Search, ShoppingBag, User, X, ArrowLeft } from "lucide-react";
 
-const navigation = [
-  {
-    title: "خانه",
-    href: "#home",
-  },
-  {
-    title: "فروشگاه",
-    href: "#shop",
-  },
-  {
-    title: "درباره ما",
-    href: "#about",
-  },
-  {
-    title: "فرآیند ساخت",
-    href: "#process",
-  },
-  {
-    title: "تماس با ما",
-    href: "#contact",
-  },
+const navItems = [
+  { title: "خانه", href: "#home" },
+  { title: "فروشگاه", href: "#products" },
+  { title: "درباره ما", href: "#about" },
+  { title: "فرآیند ساخت", href: "#process" },
+  { title: "تماس با ما", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <div className="container-main">
-        <div className="flex h-22.5 items-center justify-between">
-          {/* لوگو */}
+    <>
+      {/* ================= DESKTOP NAVBAR ================= */}
+      <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-0 md:px-8 md:pt-5">
+        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between rounded-[24px] border border-white/40 bg-[#F2ECE1]/75 px-4 shadow-[0_10px_40px_rgba(82,96,106,0.08)] backdrop-blur-xl md:px-6">
+          {/* LOGO */}
+          <a href="#home" className="group flex items-center gap-3">
+            <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[#52606A]/15 bg-[#F2ECE1]/70 transition-transform duration-300 group-hover:rotate-6">
+              <span className="h-3 w-3 rounded-full bg-[#BD7E56]" />
+              <span className="absolute h-7 w-7 rounded-full border border-[#BD7E56]/30" />
+            </div>
 
-          <a href="#home" className="group flex flex-col items-center">
-            <span
-              className="
-                font-serif
-                text-[31px]
-                font-semibold
-                leading-none
-                tracking-[-0.04em]
-                text-[#526b79]
-              "
-            >
-              Tatrik
-            </span>
+            <div className="leading-none">
+              <span className="block font-display text-xl font-bold tracking-wide text-[#52606A]">
+                Tatrik
+              </span>
 
-            <span
-              className="
-                mt-1
-                text-[7px]
-                font-medium
-                tracking-[0.25em]
-                text-[#7b8589]
-              "
-            >
-              TATRIK
-            </span>
+              <span className="mt-1 block text-[9px] tracking-[0.28em] text-[#BD7E56]">
+                CERAMIC STUDIO
+              </span>
+            </div>
           </a>
 
-          {/* منوی دسکتاپ */}
-
-          <nav className="hidden items-center gap-8 md:flex">
-            {navigation.map((item) => (
+          {/* MENU */}
+          <nav className="hidden items-center gap-1 lg:flex">
+            {navItems.map((item, index) => (
               <a
                 key={item.title}
                 href={item.href}
-                className="
-                  text-[11px]
-                  font-medium
-                  text-[#657279]
-                  transition-colors
-                  duration-200
-                  hover:text-[#c98785]
-                "
+                className="group relative rounded-full px-4 py-2.5 text-[13px] text-[#52606A]/80 transition-all duration-300 hover:bg-white/50 hover:text-[#52606A]"
               >
                 {item.title}
+
+                <span
+                  className={`absolute bottom-1.5 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-[#BD7E56] transition-all duration-300 ${
+                    index === 0 ? "w-4" : "w-0 group-hover:w-4"
+                  }`}
+                />
               </a>
             ))}
           </nav>
 
-          {/* آیکون‌ها */}
-
-          <div className="flex items-center gap-1">
+          {/* ACTIONS */}
+          <div className="flex items-center gap-2">
             <button
-              type="button"
               aria-label="جستجو"
-              className="
-                hidden
-                rounded-full
-                p-2
-                text-[#64737a]
-                transition
-                hover:bg-white/50
-                md:block
-              "
+              className="hidden h-10 w-10 items-center justify-center rounded-full text-[#52606A] transition-all duration-300 hover:bg-white/60 hover:text-[#BD7E56] sm:flex"
             >
-              <Search size={18} strokeWidth={1.2} />
+              <Search size={18} strokeWidth={1.7} />
             </button>
 
             <button
-              type="button"
               aria-label="حساب کاربری"
-              className="
-                rounded-full
-                p-2
-                text-[#64737a]
-                transition
-                hover:bg-white/50
-              "
+              className="hidden h-10 w-10 items-center justify-center rounded-full text-[#52606A] transition-all duration-300 hover:bg-white/60 hover:text-[#BD7E56] sm:flex"
             >
-              <User size={18} strokeWidth={1.2} />
+              <User size={18} strokeWidth={1.7} />
             </button>
 
             <button
-              type="button"
               aria-label="سبد خرید"
-              className="
-                rounded-full
-                p-2
-                text-[#64737a]
-                transition
-                hover:bg-white/50
-              "
+              className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#52606A] text-[#F2ECE1] transition-all duration-300 hover:scale-105 hover:bg-[#BD7E56]"
             >
-              <ShoppingBag size={18} strokeWidth={1.2} />
+              <ShoppingBag size={17} strokeWidth={1.8} />
+
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#BD7E56] px-1 text-[8px] text-white">
+                0
+              </span>
             </button>
 
+            {/* MOBILE */}
             <button
-              type="button"
+              onClick={() => setIsOpen(true)}
               aria-label="باز کردن منو"
-              onClick={() => setMenuOpen(true)}
-              className="
-                rounded-full
-                p-2
-                text-[#64737a]
-                md:hidden
-              "
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#52606A]/15 text-[#52606A] transition-all hover:bg-white/60 lg:hidden"
             >
-              <Menu size={21} strokeWidth={1.2} />
+              <Menu size={20} strokeWidth={1.7} />
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* منوی موبایل */}
+      {/* ================= MOBILE MENU ================= */}
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] bg-[#F2ECE1]">
+          {/* Decorative shapes */}
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#A7B7C3]/20 blur-3xl" />
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-100 bg-[#f5f1ea]">
-          <div className="container-main">
-            <div className="flex h-22.5 items-center justify-between">
+          <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-[#BD7E56]/10 blur-3xl" />
+
+          {/* TOP */}
+          <div className="flex items-center justify-between px-6 py-6">
+            <a
+              href="#home"
+              onClick={() => setIsOpen(false)}
+              className="font-display text-2xl font-bold text-[#52606A]"
+            >
+              Tatrik
+            </a>
+
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="بستن منو"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#52606A]/15"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* MOBILE LINKS */}
+          <nav className="mt-12 px-8">
+            {navItems.map((item, index) => (
               <a
-                href="#home"
-                onClick={() => setMenuOpen(false)}
-                className="flex flex-col items-center"
+                key={item.title}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="group flex items-center justify-between border-b border-[#52606A]/10 py-5"
               >
-                <span className="font-serif text-[30px] font-semibold text-[#526b79]">
-                  تاتریک
-                </span>
+                <div className="flex items-center gap-4">
+                  <span className="text-xs text-[#BD7E56]">0{index + 1}</span>
 
-                <span className="text-[7px] tracking-[0.25em] text-[#7b8589]">
-                  TATRIK
-                </span>
+                  <span className="font-display text-2xl text-[#52606A]">
+                    {item.title}
+                  </span>
+                </div>
+
+                <ArrowLeft
+                  size={20}
+                  className="text-[#52606A]/40 transition-transform duration-300 group-hover:-translate-x-2"
+                />
               </a>
+            ))}
+          </nav>
 
-              <button
-                type="button"
-                aria-label="بستن منو"
-                onClick={() => setMenuOpen(false)}
-                className="p-2 text-[#526b79]"
-              >
-                <X size={25} strokeWidth={1.2} />
-              </button>
-            </div>
-
-            <nav className="mt-20 flex flex-col items-start gap-7">
-              {navigation.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="
-                    text-3xl
-                    font-light
-                    text-[#526b79]
-                    transition-colors
-                    hover:text-[#c98785]
-                  "
-                >
-                  {item.title}
-                </a>
-              ))}
-            </nav>
+          {/* BOTTOM */}
+          <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between text-xs text-[#52606A]/50">
+            <span>HANDMADE CERAMICS</span>
+            <span>© TATRIK</span>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
